@@ -8,7 +8,7 @@ namespace NuGetGallery.Areas.Admin
         public override void Up()
         {
             CreateTable(
-                "dbo.Admins",
+                "Admins",
                 c => new
                     {
                         Key = c.Int(nullable: false, identity: true),
@@ -21,7 +21,7 @@ namespace NuGetGallery.Areas.Admin
                 .Index(t => t.GalleryUsername);
 
             CreateTable(
-                "dbo.History",
+                "History",
                 c => new
                     {
                         Key = c.Int(nullable: false, identity: true),
@@ -33,13 +33,13 @@ namespace NuGetGallery.Areas.Admin
                         AssignedToId = c.Int(),
                     })
                 .PrimaryKey(t => t.Key)
-                .ForeignKey("dbo.Admins", t => t.AssignedToId)
-                .ForeignKey("dbo.Issues", t => t.IssueId, cascadeDelete: true)
+                .ForeignKey("Admins", t => t.AssignedToId)
+                .ForeignKey("Issues", t => t.IssueId, cascadeDelete: true)
                 .Index(t => t.IssueId)
                 .Index(t => t.AssignedToId);
 
             CreateTable(
-                "dbo.Issues",
+                "Issues",
                 c => new
                     {
                         Key = c.Int(nullable: false, identity: true),
@@ -58,13 +58,13 @@ namespace NuGetGallery.Areas.Admin
                         UserKey = c.Int(),
                     })
                 .PrimaryKey(t => t.Key)
-                .ForeignKey("dbo.IssueStatus", t => t.IssueStatusId, cascadeDelete: true)
-                .ForeignKey("dbo.Admins", t => t.AssignedToId)
+                .ForeignKey("IssueStatus", t => t.IssueStatusId, cascadeDelete: true)
+                .ForeignKey("Admins", t => t.AssignedToId)
                 .Index(t => t.AssignedToId)
                 .Index(t => t.IssueStatusId);
 
             CreateTable(
-                "dbo.IssueStatus",
+                "IssueStatus",
                 c => new
                     {
                         Key = c.Int(nullable: false),
@@ -73,29 +73,29 @@ namespace NuGetGallery.Areas.Admin
                 .PrimaryKey(t => t.Key)
                 .Index(t => t.Name);
 
-            Sql("INSERT INTO dbo.IssueStatus VALUES (0, 'New')");
-            Sql("INSERT INTO dbo.IssueStatus VALUES (1, 'Working')");
-            Sql("INSERT INTO dbo.IssueStatus VALUES (2, 'Waiting for customer')");
-            Sql("INSERT INTO dbo.IssueStatus VALUES (3, 'Resolved')");
+            Sql("INSERT INTO IssueStatus VALUES (0, 'New')");
+            Sql("INSERT INTO IssueStatus VALUES (1, 'Working')");
+            Sql("INSERT INTO IssueStatus VALUES (2, 'Waiting for customer')");
+            Sql("INSERT INTO IssueStatus VALUES (3, 'Resolved')");
         }
 
         public override void Down()
         {
-            DropForeignKey("dbo.Issues", "AssignedToId", "dbo.Admins");
-            DropForeignKey("dbo.Issues", "IssueStatusId", "dbo.IssueStatus");
-            DropForeignKey("dbo.History", "IssueId", "dbo.Issues");
-            DropForeignKey("dbo.History", "AssignedToId", "dbo.Admins");
-            DropIndex("dbo.IssueStatus", new[] { "Name" });
-            DropIndex("dbo.Issues", new[] { "IssueStatusId" });
-            DropIndex("dbo.Issues", new[] { "AssignedToId" });
-            DropIndex("dbo.History", new[] { "AssignedToId" });
-            DropIndex("dbo.History", new[] { "IssueId" });
-            DropIndex("dbo.Admins", new[] { "GalleryUsername" });
-            DropIndex("dbo.Admins", new[] { "PagerDutyUsername" });
-            DropTable("dbo.IssueStatus");
-            DropTable("dbo.Issues");
-            DropTable("dbo.History");
-            DropTable("dbo.Admins");
+            DropForeignKey("Issues", "AssignedToId", "Admins");
+            DropForeignKey("Issues", "IssueStatusId", "IssueStatus");
+            DropForeignKey("History", "IssueId", "Issues");
+            DropForeignKey("History", "AssignedToId", "Admins");
+            DropIndex("IssueStatus", new[] { "Name" });
+            DropIndex("Issues", new[] { "IssueStatusId" });
+            DropIndex("Issues", new[] { "AssignedToId" });
+            DropIndex("History", new[] { "AssignedToId" });
+            DropIndex("History", new[] { "IssueId" });
+            DropIndex("Admins", new[] { "GalleryUsername" });
+            DropIndex("Admins", new[] { "PagerDutyUsername" });
+            DropTable("IssueStatus");
+            DropTable("Issues");
+            DropTable("History");
+            DropTable("Admins");
         }
     }
 }

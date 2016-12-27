@@ -404,14 +404,6 @@
       <HintPath>..\..\packages\Microsoft.WindowsAzure.ConfigurationManager.3.1.0\lib\net40\Microsoft.WindowsAzure.Configuration.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SDKs\Azure\.NET SDK\v2.7\bin\plugins\Diagnostics\Microsoft.WindowsAzure.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files\Microsoft SDKs\Azure\.NET SDK\v2.7\ref\Microsoft.WindowsAzure.ServiceRuntime.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
@@ -428,6 +420,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MonAgentListener, Version=33.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MySql.Data.6.9.8\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MySql.Data.Entity.6.9.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -1634,6 +1634,7 @@
     <Content Include="Scripts\d3.v3.min.js" />
     <Content Include="Areas\Admin\Views\SupportRequest\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SupportRequest\Admins.cshtml" />
+    <None Include="Properties\PublishProfiles\本地发布.pubxml" />
     <None Include="Scripts\jquery-1.11.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.0.js" />
     <Content Include="Scripts\jquery-1.11.0.min.js" />
@@ -1762,8 +1763,6 @@
     <EmbeddedResource Include="Areas\Admin\Migrations\201602191039005_PackageInfoIsOptional.resx">
       <DependentUpon>201602191039005_PackageInfoIsOptional.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Infrastructure\Elmah.SqlServer.sql" />
-    <EmbeddedResource Include="Infrastructure\AddPackageLicenseReport.sql" />
     <Content Include="Public\robots.txt" />
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\fontawesome-webfont.ttf" />
@@ -2002,7 +2001,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>80</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://nuget.localtest.me</IISUrl>
+          <IISUrl>http://localhost:80/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

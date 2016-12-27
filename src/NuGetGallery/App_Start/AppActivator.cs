@@ -14,8 +14,6 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.UI;
 using Elmah;
-using Microsoft.WindowsAzure.Diagnostics;
-using Microsoft.WindowsAzure.ServiceRuntime;
 using NuGet.Services.Search.Client.Correlation;
 using NuGetGallery;
 using NuGetGallery.Configuration;
@@ -43,18 +41,6 @@ namespace NuGetGallery
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(CreateViewEngine());
-
-            try
-            {
-                if (RoleEnvironment.IsAvailable)
-                {
-                    CloudPreStart();
-                }
-            }
-            catch
-            {
-                // Azure SDK not available!
-            }
         }
 
         public static void PostStart()
@@ -107,7 +93,7 @@ namespace NuGetGallery
 
         private static void CloudPreStart()
         {
-            Trace.Listeners.Add(new DiagnosticMonitorTraceListener());
+           
         }
 
         private static void BundlingPostStart()
@@ -233,21 +219,7 @@ namespace NuGetGallery
         private static ProcessPerfEvents CreateLogFlushJob()
         {
             var logDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App_Data", "Logs");
-            try
-            {
-                if (RoleEnvironment.IsAvailable)
-                {
-                    var resource = RoleEnvironment.GetLocalResource("Logs");
-                    if (resource != null)
-                    {
-                        logDirectory = Path.Combine(resource.RootPath);
-                    }
-                }
-            }
-            catch
-            {
-                // Meh, so Azure isn't available...
-            }
+          
             return new ProcessPerfEvents(
                 TimeSpan.FromSeconds(10),
                 logDirectory,

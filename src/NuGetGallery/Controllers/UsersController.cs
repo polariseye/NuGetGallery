@@ -92,7 +92,7 @@ namespace NuGetGallery
         [Authorize]
         [HttpPost]
         [ActionName("ConfirmationRequired")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual ActionResult ConfirmationRequiredPost()
         {
             User user = GetCurrentUser();
@@ -129,7 +129,7 @@ namespace NuGetGallery
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> ChangeEmailSubscription(bool? emailAllowed, bool? notifyPackagePushed)
         {
             var user = GetCurrentUser();
@@ -186,7 +186,7 @@ namespace NuGetGallery
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
             // We don't want Login to have us as a return URL
@@ -232,7 +232,7 @@ namespace NuGetGallery
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> ResetPassword(string username, string token, PasswordResetViewModel model, bool forgot)
         {
             // We don't want Login to have us as a return URL
@@ -441,7 +441,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> ChangePassword(AccountViewModel model)
         {
             var user = GetCurrentUser();
@@ -484,7 +484,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual Task<ActionResult> RemovePassword()
         {
             var user = GetCurrentUser();
@@ -496,7 +496,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual Task<ActionResult> RemoveCredential(string credentialType)
         {
             var user = GetCurrentUser();
@@ -514,7 +514,7 @@ namespace NuGetGallery
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> GenerateApiKey(int? expirationInDays)
         {
             // Get the user

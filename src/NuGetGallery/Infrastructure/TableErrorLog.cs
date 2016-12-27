@@ -7,7 +7,6 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using Elmah;
-using Microsoft.WindowsAzure.ServiceRuntime;
 using Microsoft.WindowsAzure.Storage;
 using Microsoft.WindowsAzure.Storage.Table;
 
@@ -145,7 +144,7 @@ namespace NuGetGallery.Infrastructure
 
             public TableErrorLog(IDictionary config)
             {
-                _connectionString = (string)config["connectionString"] ?? RoleEnvironment.GetConfigurationSettingValue((string)config["connectionStringName"]);
+                _connectionString = (string)config["connectionString"];
                 _entityList = new AzureEntityList<ErrorEntity>(_connectionString, TableName);
             }
 

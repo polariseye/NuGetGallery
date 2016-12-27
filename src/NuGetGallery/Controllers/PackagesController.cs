@@ -103,7 +103,7 @@ namespace NuGetGallery
         [Authorize]
         [HttpPost]
         [RequiresAccountConfirmation("undo pending edits")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> UndoPendingEdits(string id, string version)
         {
             var package = _packageService.FindPackageByIdAndVersion(id, version);
@@ -177,7 +177,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [RequiresAccountConfirmation("upload a package")]
         public virtual async Task<ActionResult> UploadPackage(HttpPostedFileBase uploadFile)
         {
@@ -545,7 +545,7 @@ namespace NuGetGallery
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ValidateSpamPrevention]
         public virtual async Task<ActionResult> ReportAbuse(string id, string version, ReportAbuseViewModel reportForm)
         {
@@ -603,7 +603,7 @@ namespace NuGetGallery
         [HttpPost]
         [Authorize]
         [RequiresAccountConfirmation("contact support about your package")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ValidateSpamPrevention]
         public virtual async Task<ActionResult> ReportMyPackage(string id, string version, ReportAbuseViewModel reportForm)
         {
@@ -671,7 +671,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [RequiresAccountConfirmation("contact package owners")]
         public virtual ActionResult ContactOwners(string id, ContactOwnersViewModel contactForm)
         {
@@ -796,7 +796,7 @@ namespace NuGetGallery
         [Authorize(Roles = "Admins")]
         [HttpPost]
         [RequiresAccountConfirmation("delete a package")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Delete(DeletePackagesRequest deletePackagesRequest)
         {
             var packagesToDelete = new List<Package>();
@@ -851,7 +851,7 @@ namespace NuGetGallery
         [Authorize]
         [HttpPost]
         [RequiresAccountConfirmation("unlist a package")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> UpdateListed(string id, string version, bool? listed)
         {
             // Edit does exactly the same thing that Delete used to do... REUSE ALL THE CODE!
@@ -893,7 +893,7 @@ namespace NuGetGallery
         [Authorize]
         [HttpPost]
         [ValidateInput(false)] // Security note: Disabling ASP.Net input validation which does things like disallow angle brackets in submissions. See http://go.microsoft.com/fwlink/?LinkID=212874
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [RequiresAccountConfirmation("edit a package")]
         public virtual async Task<ActionResult> Edit(string id, string version, EditPackageRequest formData, string returnUrl)
         {
@@ -1086,7 +1086,7 @@ namespace NuGetGallery
         [Authorize]
         [HttpPost]
         [RequiresAccountConfirmation("upload a package")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         [ValidateInput(false)] // Security note: Disabling ASP.Net input validation which does things like disallow angle brackets in submissions. See http://go.microsoft.com/fwlink/?LinkID=212874
         public virtual async Task<ActionResult> VerifyPackage(VerifyPackageRequest formData)
         {
@@ -1247,7 +1247,7 @@ namespace NuGetGallery
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> CancelUpload()
         {
             var currentUser = GetCurrentUser();
@@ -1258,7 +1258,7 @@ namespace NuGetGallery
 
         [Authorize]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> SetLicenseReportVisibility(string id, string version, bool visible)
         {
             return await SetLicenseReportVisibility(id, version, visible, Url.Package);

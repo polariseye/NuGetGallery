@@ -11,7 +11,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Configuration;
-using Microsoft.WindowsAzure.ServiceRuntime;
 using NuGet.Services.KeyVault;
 using NuGetGallery.Configuration.SecretReader;
 
@@ -122,7 +121,7 @@ namespace NuGetGallery.Configuration
             }
             return instance;
         }
-        
+
         public async Task<string> ReadSetting(string settingName)
         {
             string value;
@@ -179,14 +178,7 @@ namespace NuGetGallery.Configuration
             string value = null;
             try
             {
-                if (RoleEnvironment.IsAvailable)
-                {
-                    value = RoleEnvironment.GetConfigurationSettingValue(settingName);
-                }
-                else
-                {
-                    _notInCloud = true;
-                }
+                _notInCloud = true;
             }
             catch (TypeInitializationException)
             {
@@ -210,7 +202,7 @@ namespace NuGetGallery.Configuration
         {
             return WebConfigurationManager.ConnectionStrings[settingName];
         }
-      
+
         private string GetHttpSiteRoot()
         {
             var request = GetCurrentRequest();

@@ -16,6 +16,7 @@ namespace NuGetGallery
         /// </summary>
         public Credential()
         {
+            Created = DateTime.Now;
         }
 
 
@@ -68,7 +69,7 @@ namespace NuGetGallery
         public DateTime Created { get; set; }
 
         public DateTime? Expires { get; set; }
-
+        
         public DateTime? LastUsed { get; set; }
 
         public virtual User User { get; set; }

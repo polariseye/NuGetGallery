@@ -13,7 +13,6 @@ using System.Web.Mvc;
 using AnglicanGeek.MarkdownMailer;
 using Autofac;
 using Elmah;
-using Microsoft.WindowsAzure.ServiceRuntime;
 using NuGetGallery.Areas.Admin;
 using NuGetGallery.Auditing;
 using NuGetGallery.Configuration;
@@ -207,12 +206,12 @@ namespace NuGetGallery
                         var smtpUri = new SmtpUri(settings.Current.SmtpUri);
 
                         var mailSenderConfiguration = new MailSenderConfiguration
-                            {
-                                DeliveryMethod = SmtpDeliveryMethod.Network,
-                                Host = smtpUri.Host,
-                                Port = smtpUri.Port,
-                                EnableSsl = smtpUri.Secure
-                            };
+                        {
+                            DeliveryMethod = SmtpDeliveryMethod.Network,
+                            Host = smtpUri.Host,
+                            Port = smtpUri.Port,
+                            EnableSsl = smtpUri.Secure
+                        };
 
                         if (!string.IsNullOrWhiteSpace(smtpUri.UserName))
                         {
@@ -227,10 +226,10 @@ namespace NuGetGallery
                     else
                     {
                         var mailSenderConfiguration = new MailSenderConfiguration
-                            {
-                                DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
-                                PickupDirectoryLocation = HostingEnvironment.MapPath("~/App_Data/Mail")
-                            };
+                        {
+                            DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
+                            PickupDirectoryLocation = HostingEnvironment.MapPath("~/App_Data/Mail")
+                        };
 
                         return new MailSender(mailSenderConfiguration);
                     }
@@ -422,14 +421,7 @@ namespace NuGetGallery
                 .SingleInstance();
 
             string instanceId;
-            try
-            {
-                instanceId = RoleEnvironment.CurrentRoleInstance.Id;
-            }
-            catch
-            {
-                instanceId = Environment.MachineName;
-            }
+            instanceId = Environment.MachineName;
 
             var localIp = AuditActor.GetLocalIP().Result;
 

@@ -63,7 +63,8 @@ namespace NuGetGallery.Operations.Tasks
 
             string startName = start ?? migrator.GetDatabaseMigrations().FirstOrDefault();
             string scriptFileName = $"{startName}-{target}.sql";
-            if (File.Exists(scriptFileName)) {
+            if (File.Exists(scriptFileName))
+            {
                 Log.Error("File already exists: {0}", scriptFileName);
                 return;
             }

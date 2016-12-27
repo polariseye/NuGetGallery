@@ -78,8 +78,8 @@ namespace NuGetGallery
         }
 
         [HttpPost]
-        [RequireSsl]
-        [ValidateAntiForgeryToken]
+        //[RequireSsl]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> SignIn(LogOnViewModel model, string returnUrl, bool linkingAccount)
         {
             // I think it should be obvious why we don't want the current URL to be the return URL here ;)
@@ -182,7 +182,7 @@ namespace NuGetGallery
         
         [HttpPost]
         [RequireSsl]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Register(LogOnViewModel model, string returnUrl, bool linkingAccount)
         {
             // I think it should be obvious why we don't want the current URL to be the return URL here ;)
@@ -283,7 +283,7 @@ namespace NuGetGallery
 
         [ActionName("Authenticate")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual ActionResult AuthenticatePost(string returnUrl, string provider)
         {
             return ChallengeAuthentication(returnUrl, provider);

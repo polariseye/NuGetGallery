@@ -63,7 +63,7 @@ namespace NuGetGallery
 
         [HttpPost]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Contact(ContactSupportViewModel contactForm)
         {
             if (!ModelState.IsValid)

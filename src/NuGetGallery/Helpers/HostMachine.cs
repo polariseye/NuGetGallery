@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Microsoft.WindowsAzure.ServiceRuntime;
 
 namespace NuGetGallery.Helpers
 {
@@ -21,14 +20,7 @@ namespace NuGetGallery.Helpers
         {
             try
             {
-                if (RoleEnvironment.IsAvailable)
-                {
-                    return RoleEnvironment.CurrentRoleInstance.Id;
-                }
-                else
-                {
-                    return Environment.MachineName;
-                }
+                return Environment.MachineName;
             }
             catch // Can't even run RoleEnvironment.IsAvailable because Azure SDK is not installed.
             {
