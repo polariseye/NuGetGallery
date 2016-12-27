@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net.Mail;
 
 namespace Polaris.Utility.MailUtil
@@ -6,7 +7,7 @@ namespace Polaris.Utility.MailUtil
     /// <summary>
     /// 邮件发送接口
     /// </summary>
-    public interface IMailSender
+    public interface IMailSender : IDisposable
     {
         /// <summary>
         /// 发送邮件

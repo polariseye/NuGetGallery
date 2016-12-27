@@ -8,7 +8,7 @@ namespace Polaris.Utility.MailUtil
     /// <summary>
     /// 邮件发送对象
     /// </summary>
-    public partial class MailSender : IDisposable, IMailSender
+    public partial class MailSender : IMailSender
     {
         /// <summary>
         /// smtp客户端
@@ -49,7 +49,6 @@ namespace Polaris.Utility.MailUtil
             if (config.PickupDirectoryLocation != null)
                 tmpClient.PickupDirectoryLocation = config.PickupDirectoryLocation;
 
-
             this.smtpClient = tmpClient;
         }
 
@@ -68,6 +67,9 @@ namespace Polaris.Utility.MailUtil
         /// <param name="message">消息发送体</param>
         public void Send(MailMessage message)
         {
+            string htmlBody = String.IsNullOrWhiteSpace(message.Body) ? String.Empty : new Markdown().Transform(message.Body);
+            message.Body = htmlBody;
+
             this.smtpClient.Send(message);
         }
 
@@ -125,11 +127,10 @@ namespace Polaris.Utility.MailUtil
         /// <param name="content">内容</param>
         public void Send(MailAddress fromAddress, List<MailAddress> toAddress, string subject, string content)
         {
-            string htmlBody = new Markdown().Transform(content);
             var mailMessage = new MailMessage(fromAddress, toAddress[0])
             {
                 Subject = subject,
-                Body = htmlBody
+                Body = content
             };
 
             // 设置内容是html代码
