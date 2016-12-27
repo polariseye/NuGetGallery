@@ -240,7 +240,7 @@ namespace NuGetGallery
             builder.Register(c => mailSenderThunk.Value)
                 .AsSelf()
                 .As<IMailSender>()
-                .InstancePerLifetimeScope();
+                .SingleInstance();
 
             builder.RegisterType<MessageService>()
                 .AsSelf()
