@@ -7,10 +7,10 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Web;
-using AnglicanGeek.MarkdownMailer;
 using NuGetGallery.Authentication;
 using NuGetGallery.Configuration;
 using NuGetGallery.Services;
+using Polaris.Utility.MailUtil;
 
 namespace NuGetGallery
 {

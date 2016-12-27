@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
-using AnglicanGeek.MarkdownMailer;
 using Moq;
 using NuGetGallery.Authentication;
 using NuGetGallery.Authentication.Providers;
@@ -13,6 +12,8 @@ using NuGetGallery.Configuration;
 using NuGetGallery.Framework;
 using NuGetGallery.Infrastructure.Authentication;
 using Xunit;
+using Polaris.Utility.MailUtil;
+using System;
 
 namespace NuGetGallery
 {
@@ -665,6 +666,26 @@ namespace NuGetGallery
             public void Send(string fromAddress, string toAddress, string subject, string markdownBody)
             {
                 Send(new MailMessage(fromAddress, toAddress, subject, markdownBody));
+            }
+
+            public void Send(string toAddress, string subject, string content)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Send(List<MailAddress> toAddress, string subject, string content)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Send(MailAddress fromAddress, List<MailAddress> toAddress, string subject, string content)
+            {
+                throw new NotImplementedException();
+            }
+
+            public void SetDefaultFromAddress(MailAddress fromAddress)
+            {
+                throw new NotImplementedException();
             }
         }
     }

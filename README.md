@@ -177,3 +177,7 @@ This is the Git workflow we're currently using:
     
 6.  __Be ready to guide your change through QA, Staging and Prod__
     Your change will make its way through the QA, Staging and finally Prod branches as it's deployed to the various environments. Be prepared to fix additional bugs!
+
+## 调整说明
+1. __由于本地不支持markdown邮件，导致老是无法正常送达邮件，所以重写了邮件模块代码，具体建[NugetGallery/Services/MailService](https://github.com/polariseye/CSharpUtil/tree/master/MailUtil)__
+2. __由于我比较喜欢使用mysql数据库，所以配置文件内容已修改为mysql配置，并调整了部分数据库脚本相关代码。数据库脚本见目录[./nuget数据库](./nuget数据库)__

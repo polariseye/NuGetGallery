@@ -10,7 +10,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Hosting;
 using System.Web.Mvc;
-using AnglicanGeek.MarkdownMailer;
+using Polaris.Utility.MailUtil;
 using Autofac;
 using Elmah;
 using NuGetGallery.Areas.Admin;
@@ -205,7 +205,7 @@ namespace NuGetGallery
                     {
                         var smtpUri = new SmtpUri(settings.Current.SmtpUri);
 
-                        var mailSenderConfiguration = new MailSenderConfiguration
+                        var mailSenderConfiguration = new SmtpConfig
                         {
                             DeliveryMethod = SmtpDeliveryMethod.Network,
                             Host = smtpUri.Host,
@@ -225,7 +225,7 @@ namespace NuGetGallery
                     }
                     else
                     {
-                        var mailSenderConfiguration = new MailSenderConfiguration
+                        var mailSenderConfiguration = new SmtpConfig
                         {
                             DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory,
                             PickupDirectoryLocation = HostingEnvironment.MapPath("~/App_Data/Mail")

@@ -1404,6 +1404,9 @@
     <Compile Include="RequestModels\VerifyPackageRequest.cs" />
     <Compile Include="Infrastructure\Authentication\LegacyHasher.cs" />
     <Compile Include="Infrastructure\Authentication\V3Hasher.cs" />
+    <Compile Include="Services\MailService\IMailSender.cs" />
+    <Compile Include="Services\MailService\MailSender.cs" />
+    <Compile Include="Services\MailService\SmtpConfig.cs" />
     <Compile Include="Services\ReflowPackageService.cs" />
     <Compile Include="WebApi\PlainTextResult.cs" />
     <Compile Include="WebApi\QueryResult.cs" />
